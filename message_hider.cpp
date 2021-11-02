@@ -12,29 +12,39 @@ void encrypt(char par);
 void decryption();
 void decrypt(int start,int last);
 void starter();
+void reset();
 int msg[1500];
 int choice;
 char str[max_msg];
 char *p = str;
+char arr[40];
 int main(){
+		arr[10]='a',arr[11]='b',arr[12]='c',arr[13]='d',arr[14]='e',arr[15]='f',arr[16]='g',arr[17]='h',
+	    arr[18]='i',arr[19]='j',arr[20]='k',arr[21]='l',arr[22]='m',arr[23]='n',arr[24]='o',arr[25]='p',
+	    arr[26]='q',arr[27]='r',arr[28]='s',arr[29]='t',arr[30]='u',arr[31]='v',arr[32]='w',arr[33]='x',
+	    arr[34]='y',arr[35]='z',arr[36]=' ';
 	starter();
 	while(1)
 	{
+		
 		printf("\tENTER YOUR CHOICE: ");
 		scanf(" %d",&choice);
 		switch(choice){
 			case 1 :
+						choice=0;
 						encryption();
 						break;
 			case 2 :    
+						choice=0;
 						decryption();
 						break;
 			case 0 :    
+						choice=0;
 						exit(0);
 						break;				
-			default  :
+			default :
 						printf("\n");
-						system("color 01");
+						system("color 4");
 						printf("\t\t\t\t\t    WRONG CHOICE \n");
 						printf("\n");
 						breakline();
@@ -42,6 +52,7 @@ int main(){
 						system("pause");
 						system("cls");
 						starter();
+						choice=0;
 						break;		
 		}		
 	}
@@ -59,41 +70,39 @@ void breakline(){
 void encryption(){
 	char val;
 	int count=0;
-	system("color 05");
+	system("color 7");
 	system("cls");
-	printf("\n\t\t\t\t\t    ENCRYPTION IS WORKING \n");
+	printf("\n\t\t\t\t\t    MESSAGE ENCRYPTION \n");
 	printf("\n");
 	breakline();
 	printf("\n");
 	ecryptioninput();
-	
 	while( *p != '\0' ){
 		val = *p;
 		encrypt(val);
 		count++;
 		p++;
 	}
-	printf("\n\tTHE LENGTH OF ENCRYPTION CODE IS  %d ",count*6);
+	count--;
+	printf("\n\tTHE KEY OF ENCRYPTED MESSAGE IS = %d  ",count*6);
 	printf("\n");
 	printf(" \n");
 	system("pause");
 	system("cls");
 	starter();
+	reset();
 return ;
 }
 void ecryptioninput(){
-		printf("\n\tENTER THE MESSAGE TO ENCRYPT \n");
-		
+		printf("\n\tENTER THE MESSAGE TO ENCRYPT (250 CHARACTERS) :- \n");
+		while ((getchar()) != '\n');
+		printf(" \n");
+		fgets(str, max_msg, stdin);
 	return ;
 }
 void encrypt(char par){
 		int i,up,down,temp;
-		char arr[100];
-		int array[100];
-		arr[10]='a',arr[11]='b',arr[12]='c',arr[13]='d',arr[14]='e',arr[15]='f',arr[16]='g',arr[17]='h',
-	    arr[18]='i',arr[19]='j',arr[20]='k',arr[21]='l',arr[22]='m',arr[23]='n',arr[24]='o',arr[25]='p',
-	    arr[26]='q',arr[27]='r',arr[28]='s',arr[29]='t',arr[30]='u',arr[31]='v',arr[32]='w',arr[33]='x',
-	    arr[34]='y',arr[35]='z',arr[36]=' ';
+		int array[10];
 	    char lettr = par;
 	   
 	    for(i=10;i<37;i++)
@@ -101,12 +110,10 @@ void encrypt(char par){
 	    	temp=i;
 			 if(lettr == arr[i]){	 
 				   up=0;
-			 if(temp>=32&&temp<36)
-			    printf("%c",array[down]);
 			 if(temp<32&&temp>=16)
-				printf(" 0 %c", array[down]);
+				printf(" 0 ");
 			 if(temp>=10&&temp<16)
-				printf(" 0  0 %c", array[down]);
+				printf(" 0  0 ");
 				while(temp>0)
 				{ 
 					array[up] = temp % 2;
@@ -128,13 +135,13 @@ void decryption(){
 	int i;
 	system("color 03");
 	system("cls");
-	printf("\n\t\t\t\t\t    DECRYPTION IS WORKING \n");
+	printf("\n\t\t\t\t\t    DECRYPT THE MESSAGE \n");
 	printf("\n");
 	breakline();
 	printf("\n");
-	printf("\tENTER THE 6-BIT BINARY ENCRYPTED MESSAGE LENGTH \n");
+	printf("\tENTER THE ENCRYPTION KEY = ");
 	scanf(" %d",&length);
-	printf("\tENTER THE 6-BIT BINARY MESSAGE ONE BY ONE \n");
+	printf("\tENTER THE ENCRYPTED MESSAGE :- \n");
 	for(i=0;i<length;i++)
 	scanf("%d",&msg[i]);
 	while(start != length){
@@ -169,9 +176,6 @@ int power(int pow){
 }
 void compare(int value){
 	int i;
-	char arr[36];
-	arr[10]='a',arr[11]='b',arr[12]='c',arr[13]='d',arr[14]='e',arr[15]='f',arr[16]='g',arr[17]='h',arr[18]='i',arr[19]='j',arr[20]='k',arr[21]='l',arr[22]='m',
-	arr[23]='n',arr[24]='o',arr[25]='p',arr[26]='q',arr[27]='r',arr[28]='s',arr[29]='t',arr[30]='u',arr[31]='v',arr[32]='w',arr[33]='x',arr[34]='y',arr[35]='z',arr[36]=' ';
 		for(i=10;i<37;i++){
 		if(i==value){
 			printf("%c",arr[i]);
@@ -182,7 +186,7 @@ void compare(int value){
 void starter(){
 		printf("\n");
 		system("color 0A");
-		printf("\t\t\t\t\t    WELCOME TO 6-BIT MESSAGE ECNRYPTION \n");
+		printf("\t\t\t\t\t    WELCOME TO MESSAGE ECNRYPTION \n");
 		printf("\n");
 		breakline();
 		printf("\n");
@@ -194,3 +198,7 @@ void starter(){
 		printf("\n");	
 	return;
 }
+void reset(){
+	p=str;
+}
+
